@@ -1,7 +1,12 @@
+# Python
 .venv/
 __pycache__/
 *.pyc
+
+# Node
 node_modules/
 dist/
+
+# Env & system
 .env
 .DS_Store
