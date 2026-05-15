@@ -1,15 +1,32 @@
-import { useEffect } from "react";
+import React, { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import AIInsightsPage from "./pages/AIInsights";
 
-function App() {
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/")
-      .then(res => res.json())
-      .then(data => console.log(data));
-  }, []);
+/**
+ * App holds the shared AI insights state so it survives navigation.
+ * Dashboard writes to it; AIInsightsPage reads from it.
+ */
+const App = () => {
+  const [aiState, setAiState] = useState(null); // { jobId, data } | null
 
   return (
-    <h1>Check console for backend response</h1>
+    <Routes>
+      <Route
+        path="/"
+        element={<Dashboard onAiInsights={setAiState} />}
+      />
+      <Route
+        path="/ai-insights"
+        element={
+          aiState
+            ? <AIInsightsPage jobId={aiState.jobId} insightsData={aiState.data} />
+            : <Navigate to="/" replace />
+        }
+      />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
-}
+};
 
 export default App;
