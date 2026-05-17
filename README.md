@@ -1,7 +1,3 @@
-Here’s a clean, balanced, and professional README tailored to your **full project (frontend + backend + AI system)**. It avoids being too long while still explaining everything important clearly.
-
----
-
 # 🌐 Web Crawler & AI-Based Website Analysis System
 
 A full-stack web application that audits websites for structural issues, broken resources, and code quality problems using a **multi-threaded crawler** and **AI-powered insights**.
